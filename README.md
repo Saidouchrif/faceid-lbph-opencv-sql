@@ -3,7 +3,7 @@
 > Mini-projet de reconnaissance faciale “présence/absence” basé sur **OpenCV (LBPH)** avec stockage des métadonnées en **SQL** (MySQL/MariaDB).  
 L’objectif est double :  
 1) **Enrôlement** — enregistrer des visages depuis des images, les détecter/recadrer, et entraîner un modèle **LBPH**.  
-2) **Reconnaissance en direct** — ouvrir la **webcam** pour vérifier si la personne cible (ex. *Ayoub*) est présente ou non, même s’il y a d’autres personnes.
+2) **Reconnaissance en direct** — ouvrir la **webcam** pour vérifier si la personne cible (ex. *Said*) est présente ou non, même s’il y a d’autres personnes.
 
 ## Fonctionnalités
 - Détection de visage (Haar Cascade), recadrage et normalisation.

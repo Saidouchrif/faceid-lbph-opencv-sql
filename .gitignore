@@ -1,11 +1,14 @@
 # Ignorer les photos brutes des personnes
-people/
+Abdlatif/
+Said/
+Ayoub/
+Bilal/
 
 # Ignorer les données générées automatiquement
-data/dataset/
-data/model.yml
-data/labels.json
-data/recognized/
+dataset/
+model.yml
+labels.json
+recognized/
 
 # Environnements / caches
 __pycache__/

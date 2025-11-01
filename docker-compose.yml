@@ -1,0 +1,57 @@
+services:
+  mysqldb:
+    image: mysql:8.0
+    container_name: faceid-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: faceid_db
+      MYSQL_USER: faceid_user
+      MYSQL_PASSWORD: faceid_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    command: ["--default-authentication-plugin=mysql_native_password"]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -prootpass || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: faceid-phpmyadmin
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    environment:
+      PMA_HOST: mysqldb          # يربط مباشرة بكونتينر MySQL
+      PMA_PORT: 3306
+      PMA_USER: faceid_user      # تقدر تغيّر ل root
+      PMA_PASSWORD: faceid_pass  # لو استعملت root، دير rootpass
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "8080:80"                # ادخل من http://localhost:8080
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: faceid-app
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysqldb
+      DB_USER: faceid_user
+      DB_PASSWORD: faceid_pass
+      DB_NAME: faceid_db
+    volumes:
+      - .:/app
+      - faceid_data:/app/data
+    stdin_open: true
+    tty: true
+
+volumes:
+  mysql_data:
+  faceid_data:

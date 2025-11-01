@@ -1,10 +1,9 @@
-# cam_fix.py — Windows webcam fixer/diag
 import cv2, time
 
 APIS = [cv2.CAP_DSHOW, cv2.CAP_MSMF, cv2.CAP_ANY]
 IDX  = [0,1,2,3]
 RES  = [(640,480),(1280,720)]
-FOUR = [None, 'MJPG', 'YUY2']  # MJPG مهم بزاف فـ Windows
+FOUR = [None, 'MJPG', 'YUY2'] 
 
 def try_combo(i, api, res, four):
     cap = cv2.VideoCapture(i, api)

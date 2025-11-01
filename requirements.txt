@@ -1,0 +1,10 @@
+# Core computer vision + data
+opencv-contrib-python==4.9.0.80
+numpy==1.26.4
+
+# Base de données (MySQL)
+mysql-connector-python==8.3.0
+
+# Outils utiles
+pillow==10.3.0
+imutils==0.5.4

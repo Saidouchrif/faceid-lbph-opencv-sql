@@ -1,0 +1,23 @@
+# Ignorer les photos brutes des personnes
+people/
+
+# Ignorer les données générées automatiquement
+data/dataset/
+data/model.yml
+data/labels.json
+data/recognized/
+
+# Environnements / caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Dossiers IDE
+.vscode/
+.idea/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
